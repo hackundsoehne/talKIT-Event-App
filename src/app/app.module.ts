@@ -1,16 +1,35 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { JetztPage } from '../pages/jetzt/jetzt';
+import { ProgrammPage } from '../pages/programm/programm';
+import { SponsorsPage } from '../pages/sponsors/sponsors';
+import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import { HelpMePage } from '../pages/help-me/help-me';
+import { DetailsPage } from '../pages/details/details';
+import { DetailsPicturePage } from '../pages/details-picture/details-picture';
+import { SettingsPage } from '../pages/settings/settings';
+import { LoginPage } from '../pages/login/login';
+import { IntenseSessionsPage } from '../pages/intense-sessions/intense-sessions';
+
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    JetztPage,
+    ProgrammPage,
+    SponsorsPage,
+    TabsControllerPage,
+    HelpMePage,
+    DetailsPage,
+    DetailsPicturePage,
+    SettingsPage,
+    LoginPage,
+    IntenseSessionsPage
   ],
   imports: [
     BrowserModule,
@@ -19,7 +38,16 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    JetztPage,
+    ProgrammPage,
+    SponsorsPage,
+    TabsControllerPage,
+    HelpMePage,
+    DetailsPage,
+    DetailsPicturePage,
+    SettingsPage,
+    LoginPage,
+    IntenseSessionsPage
   ],
   providers: [
     StatusBar,

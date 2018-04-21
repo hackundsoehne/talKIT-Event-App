@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { SponsorsPage } from '../sponsors/sponsors';
+import { JetztPage } from '../jetzt/jetzt';
+import { ProgrammPage } from '../programm/programm';
+import { HelpMePage } from '../help-me/help-me';
+import { SettingsPage } from '../settings/settings';
+
+@Component({
+  selector: 'page-tabs-controller',
+  templateUrl: 'tabs-controller.html'
+})
+export class TabsControllerPage {
+  // this tells the tabs component which Pages
+  // should be each tab's root Page
+  tab1Root: any = JetztPage;
+  tab2Root: any = ProgrammPage;
+  tab3Root: any = SponsorsPage;
+  tab4Root: any = HelpMePage;
+  tab5Root: any = SettingsPage;
+  constructor(public navCtrl: NavController) {
+  }
+  goToSponsors(params){
+    if (!params) params = {};
+    this.navCtrl.push(SponsorsPage);
+  }
+}
