@@ -42,7 +42,7 @@ export class Location {
 }
 
 export class Host {
-    constructor(public image: URL, public name: String, public description: String) {
+    constructor(public image: URL, public name: String, public description: String, public link? : URL) {
 
     }
 }
