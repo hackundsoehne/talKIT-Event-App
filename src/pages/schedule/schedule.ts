@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
-import { IntenseSessionsPage } from '../intense-sessions/intense-sessions';
+import { SessionChooserPage } from '../session-chooser/session-chooser';
 import * as schedule from '../../app/schedule'
 
 class ScheduleGroup {
@@ -53,16 +53,7 @@ export class SchedulePage {
     if (item.backingItem) {
       this.navCtrl.push(DetailsPage, {block : item.backingBlock, item : item.backingItem});
     } else {
-      this.goToIntenseSessions(undefined);
+      this.navCtrl.push(SessionChooserPage, {block : item.backingBlock});
     }
-  }
-
-  goToDetails(params){
-    if (!params) params = {};
-    this.navCtrl.push(DetailsPage);
-  }
-  goToIntenseSessions(params){
-    if (!params) params = {};
-    this.navCtrl.push(IntenseSessionsPage);
   }
 }

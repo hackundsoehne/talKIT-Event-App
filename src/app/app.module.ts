@@ -10,7 +10,7 @@ import { HelpMePage } from '../pages/help-me/help-me';
 import { DetailsPage } from '../pages/details/details';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
-import { IntenseSessionsPage } from '../pages/intense-sessions/intense-sessions';
+import { SessionChooserPage } from '../pages/session-chooser/session-chooser';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,7 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailsPage,
     SettingsPage,
     LoginPage,
-    IntenseSessionsPage
+    SessionChooserPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +44,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailsPage,
     SettingsPage,
     LoginPage,
-    IntenseSessionsPage
+    SessionChooserPage
   ],
   providers: [
     StatusBar,

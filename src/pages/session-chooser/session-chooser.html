@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{block.name}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="page12">
+    <ion-list id="intenseSessions-list3">
+        <ion-item *ngFor="let item of block.items" on-click="goToDetail(item)">{{item.title}}<span item-end>{{item.time}}</span></ion-item>
+    </ion-list>
+</ion-content>
