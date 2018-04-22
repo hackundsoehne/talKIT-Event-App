@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { JetztPage } from '../pages/jetzt/jetzt';
-import { ProgramPage } from '../pages/program/program';
+import { SchedulePage } from '../pages/schedule/schedule';
 import { SponsorsPage } from '../pages/sponsors/sponsors';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { HelpMePage } from '../pages/help-me/help-me';
 import { DetailsPage } from '../pages/details/details';
-import { DetailsPicturePage } from '../pages/details-picture/details-picture';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { IntenseSessionsPage } from '../pages/intense-sessions/intense-sessions';
@@ -21,12 +20,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     JetztPage,
-    ProgramPage,
+    SchedulePage,
     SponsorsPage,
     TabsControllerPage,
     HelpMePage,
     DetailsPage,
-    DetailsPicturePage,
     SettingsPage,
     LoginPage,
     IntenseSessionsPage
@@ -39,12 +37,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     JetztPage,
-    ProgramPage,
+    SchedulePage,
     SponsorsPage,
     TabsControllerPage,
     HelpMePage,
     DetailsPage,
-    DetailsPicturePage,
     SettingsPage,
     LoginPage,
     IntenseSessionsPage

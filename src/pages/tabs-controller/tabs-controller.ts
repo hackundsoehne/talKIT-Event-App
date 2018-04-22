@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SponsorsPage } from '../sponsors/sponsors';
 import { JetztPage } from '../jetzt/jetzt';
-import { ProgramPage } from '../program/program';
+import { SchedulePage } from '../schedule/schedule';
 import { HelpMePage } from '../help-me/help-me';
 import { SettingsPage } from '../settings/settings';
 
@@ -14,7 +14,7 @@ export class TabsControllerPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = JetztPage;
-  tab2Root: any = ProgramPage;
+  tab2Root: any = SchedulePage;
   tab3Root: any = SponsorsPage;
   tab4Root: any = HelpMePage;
   tab5Root: any = SettingsPage;

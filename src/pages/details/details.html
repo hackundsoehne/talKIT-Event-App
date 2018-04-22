@@ -1,43 +1,41 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Details
+            {{block.name}}
         </ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content padding id="page6">
+<ion-content padding id="pageDetails">
+    <div *ngIf="item.image">
+        <img src="{{item.image}}" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+    </div>
     <h1 id="details-heading4" style="color:#000000;">
-        Workshop
+        {{item.name}}
     </h1>
     <ion-card id="details-card25">
         <ion-list>
             <ion-item color="none" id="details-list-item20">
                 <ion-icon name="pin" item-left></ion-icon>
-                Egon-Eiermann Hörsaal
+                {{item.location.name}}
+                <button ion-button clear item-end on-click="openMaps()">Navigation</button>
             </ion-item>
             <ion-item color="none" id="details-list-item28">
-                Donnerstag, 09:30 bis 10:30
+                {{block.getDateTime()}}
             </ion-item>
         </ion-list>
     </ion-card>
-    <ion-card id="details-card23">
+    <ion-card *ngIf="item.host" id="details-card23">
         <ion-list>
             <ion-item color="none" id="details-list-item12">
-                <ion-avatar item-left>
-                    <img />
-                </ion-avatar>
-                <h2>
-                    Herr Dr. Whatever
-                </h2>
+                <ion-thumbnail item-left>
+                    <img src="{{item.host.image}}" />
+                </ion-thumbnail>
+                <h2>{{item.host.name}}</h2>
+                <p>{{item.host.description}}</p>
             </ion-item>
         </ion-list>
     </ion-card>
     <div id="details-markdown12" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">
-            Hier stehen
-            <strong>
-        ganz
-      </strong> viele tolle Informationen! Man kann nicht genug davon kriegen!
-        </p>
+        {{item.description}}
     </div>
 </ion-content>
