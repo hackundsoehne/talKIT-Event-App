@@ -11,6 +11,7 @@ import { DetailsPage } from '../pages/details/details';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { SessionChooserPage } from '../pages/session-chooser/session-chooser';
+import { SpeakerPage } from '../pages/speaker/speaker';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailsPage,
     SettingsPage,
     LoginPage,
-    SessionChooserPage
+    SessionChooserPage,
+    SpeakerPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailsPage,
     SettingsPage,
     LoginPage,
-    SessionChooserPage
+    SessionChooserPage,
+    SpeakerPage
   ],
   providers: [
     StatusBar,

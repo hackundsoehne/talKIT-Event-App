@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Block, BlockItem } from '../../app/schedule';
+import { SpeakerPage } from '../speaker/speaker';
 
 @Component({
   selector: 'page-details',
@@ -28,5 +29,9 @@ export class DetailsPage {
     else /* else use Google */ {
       window.open(`https://maps.google.com/maps?daddr=${lat},${long}&amp;ll=`);
     }
+  }
+
+  openSpeaker() {
+    this.navCtrl.push(SpeakerPage)
   }
 }
