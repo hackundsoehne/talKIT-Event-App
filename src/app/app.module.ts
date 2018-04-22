@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { JetztPage } from '../pages/jetzt/jetzt';
-import { ProgrammPage } from '../pages/programm/programm';
+import { ProgramPage } from '../pages/program/program';
 import { SponsorsPage } from '../pages/sponsors/sponsors';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { HelpMePage } from '../pages/help-me/help-me';
@@ -21,7 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     JetztPage,
-    ProgrammPage,
+    ProgramPage,
     SponsorsPage,
     TabsControllerPage,
     HelpMePage,
@@ -39,7 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     JetztPage,
-    ProgrammPage,
+    ProgramPage,
     SponsorsPage,
     TabsControllerPage,
     HelpMePage,
