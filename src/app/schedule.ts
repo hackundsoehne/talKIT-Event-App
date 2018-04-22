@@ -42,7 +42,7 @@ export class Location {
 }
 
 export class Host {
-    constructor(public image: URL, public name: String, public description: String, public link? : URL) {
+    constructor(public image: URL, public name: String, public title : String, public description: String, public link? : URL) {
 
     }
 }
@@ -63,7 +63,8 @@ export const SCHEDULE = new Schedule([
                         new Host(
                             new URL("https://hackundsoehne.de/img/logo_red.png"),
                             "Hack & Söhne",
-                            "HSG am KIT, Teil von talKIT"
+                            "HSG am KIT, Teil von talKIT",
+                            ""
                         )
                     )
                 ]
@@ -80,7 +81,8 @@ export const SCHEDULE = new Schedule([
                         new Host(
                             new URL("https://hackundsoehne.de/img/logo_red.png"),
                             "Hack & Söhne",
-                            "HSG am KIT, Teil von talKIT"
+                            "HSG am KIT, Teil von talKIT",
+                            ""
                         )
                     ),
                     new BlockItem(
@@ -90,7 +92,8 @@ export const SCHEDULE = new Schedule([
                         new Host(
                             new URL("https://hackundsoehne.de/img/logo_red.png"),
                             "Hack & Söhne",
-                            "HSG am KIT, Teil von talKIT"
+                            "HSG am KIT, Teil von talKIT",
+                            ""
                         )
                     )
                 ]
@@ -112,7 +115,8 @@ export const SCHEDULE = new Schedule([
                         new Host(
                             new URL("https://hackundsoehne.de/img/logo_red.png"),
                             "Hack & Söhne",
-                            "HSG am KIT, Teil von talKIT"
+                            "HSG am KIT, Teil von talKIT",
+                            ""
                         )
                     )
                 ]
