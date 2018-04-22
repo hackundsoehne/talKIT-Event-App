@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { JetztPage } from '../pages/jetzt/jetzt';
+import { NowPage } from '../pages/now/now';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SponsorsPage } from '../pages/sponsors/sponsors';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    JetztPage,
+    NowPage,
     SchedulePage,
     SponsorsPage,
     TabsControllerPage,
@@ -38,7 +38,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    JetztPage,
+    NowPage,
     SchedulePage,
     SponsorsPage,
     TabsControllerPage,
