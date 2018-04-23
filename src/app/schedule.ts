@@ -47,7 +47,7 @@ export class Block {
 }
 
 export class BlockItem {
-    constructor(public location: Location, public name: String, public description: String, public host?: Host, public image?: URL) {
+    constructor(public location: Location, public name: String, public description: String, public host?: Host, public image?: string) {
         
     }
 
@@ -56,16 +56,16 @@ export class BlockItem {
         if (json.host) {
             host = Host.fromJSON(json.host)
         }
-        var url = undefined
-        if (json.url) {
-            url = new URL(url)
+        var string = undefined
+        if (json.string) {
+            string = string
         }
         return new BlockItem(
             Location.fromJSON(json.location), 
             json.name, 
             json.description,
             host,
-            url
+            string
         )
     }
 }
@@ -81,17 +81,17 @@ export class Location {
 }
 
 export class Host {
-    constructor(public image: URL, public name: String, public title : String, public description: String, public link? : URL) {
+    constructor(public image: string, public name: String, public title : String, public description: String, public link? : string) {
 
     }
 
     static fromJSON(json: any) : Host {
         var link = undefined
         if (json.link) {
-            link = new URL(link)
+            link = link
         }
         return new Host(
-            new URL(json.image),
+            json.image,
             json.name,
             json.title,
             json.description,

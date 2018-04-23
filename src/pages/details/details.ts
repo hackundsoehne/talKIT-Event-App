@@ -32,6 +32,6 @@ export class DetailsPage {
   }
 
   openSpeaker() {
-    this.navCtrl.push(SpeakerPage)
+    this.navCtrl.push(SpeakerPage, {host : this.item.host});
   }
 }
