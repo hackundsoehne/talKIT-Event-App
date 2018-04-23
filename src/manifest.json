@@ -4,9 +4,33 @@
     "start_url": "index.html",
     "display": "standalone",
     "icons": [{
-        "src": "assets/imgs/talkit_Sprechblase_gruen.jpg",
-        "sizes": "161x162",
-        "type": "image/jpg"
+        "src": "assets/icon/Android/Icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+    }, {
+        "src": "assets/icon/Android/Icon-36.png",
+        "sizes": "36x36",
+        "type": "image/png"
     }],
     "background_color": "#4e8ef7",
     "theme_color": "#4e8ef7"
