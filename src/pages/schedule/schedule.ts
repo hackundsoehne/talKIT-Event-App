@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
 import { SessionChooserPage } from '../session-chooser/session-chooser';
 import * as schedule from '../../app/schedule'
+import {SCHEDULE} from '../../app/app.component'
 
 class ScheduleGroup {
   public name: String
@@ -47,7 +48,7 @@ export class SchedulePage {
   // should be each tab's root Page
   constructor(public navCtrl: NavController) {
     //TODO replace
-    this.scheduleGroups = schedule.SCHEDULE.days.map(x => new ScheduleGroup(x))
+    this.scheduleGroups = SCHEDULE.days.map(x => new ScheduleGroup(x))
   }
 
   goToDetail(item : ScheduleItem) {

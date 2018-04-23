@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Schedule, Block, SCHEDULE } from '../../app/schedule';
+import { Schedule, Block } from '../../app/schedule';
+import { SCHEDULE } from '../../app/app.component';
 import { DetailsPage } from '../details/details';
 import { SessionChooserPage } from '../session-chooser/session-chooser';
 

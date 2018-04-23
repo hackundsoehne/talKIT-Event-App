@@ -28,7 +28,9 @@
         <ion-list>
             <ion-item color="none" id="details-list-item12">
                 <ion-thumbnail item-left>
-                    <img src="{{item.host.image}}" />
+                    <div center text-center>
+                        <img src="{{item.host.image}}" class="speaker" />
+                    </div>
                 </ion-thumbnail>
                 <h2>{{item.host.name}}</h2>
                 <p>{{item.host.title}}</p>
