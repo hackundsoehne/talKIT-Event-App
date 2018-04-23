@@ -34,8 +34,8 @@ export class Block {
     }
 
     public getTime() : String {
-        let start = `${this.start.getHours()}:${this.start.getMinutes()}`
-        let end = `${this.end.getHours()}:${this.end.getMinutes()}`
+        let start = `${(`0${this.start.getHours()}`).slice(-2)}:${(`0${this.start.getMinutes()}`).slice(-2)}`
+        let end = `${(`0${this.end.getHours()}`).slice(-2)}:${(`0${this.end.getMinutes()}`).slice(-2)}`
         return start + ' - ' + end
     }
 
