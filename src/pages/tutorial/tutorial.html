@@ -12,7 +12,7 @@
         <ion-slide>
             <img src="assets/imgs/Vektor.png" class="slide-image" />
             <h2 class="slide-title">
-                Willkommen bei <b>talKIT 2018!</b>
+                Willkommen bei <b>talKIT!</b>
             </h2>
             <p>
                 Example Text
@@ -39,29 +39,27 @@
 
         <ion-slide>
             <img src="assets/imgs/Vektor.png" class="slide-image" />
-            <ion-content padding>
-                <form #loginForm="ngForm" (ngSubmit)="startApp()" autocomplete="off">
-                    <ion-row>
-                        <ion-col>
-                            <ion-list inset>
-                                <ion-item>
-                                    <ion-input placeholder="Anmelde-Code" name="token" id="loginField" type="text" required [(ngModel)]="token" #email></ion-input>
-                                </ion-item>
-                            </ion-list>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-                            <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
-                            </button>
-                        </ion-col>
-                    </ion-row>
-                </form>
-                <div style="margin-top: 10px">
-                    oder klicke auf den Link in der E-Mail
-                </div>
-            </ion-content>
+            <form #loginForm="ngForm" (ngSubmit)="startApp()" autocomplete="off">
+                <ion-row>
+                    <ion-col>
+                        <ion-list inset>
+                            <ion-item>
+                                <ion-input placeholder="Anmelde-Code" name="token" id="loginField" type="text" required [(ngModel)]="token" #email></ion-input>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                        <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </form>
+            <div style="margin-top: 10px">
+                oder klicke auf den Link in der E-Mail
+            </div>
         </ion-slide>
 
     </ion-slides>
