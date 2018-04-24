@@ -24,7 +24,14 @@ export class TutorialPage {
   ) { }
 
   startApp() {
-    this.navCtrl.push(TabsControllerPage).then(() => {
+    // fetch("https://appapi.hackundsoehne.de/user/" + this.token)
+    // .then(response => response.json())
+    // .then(json => {
+    //   this.storage.set('user', this.token);  
+    // })
+    // .then(() => this.navCtrl.push(TabsControllerPage))
+    this.navCtrl.push(TabsControllerPage)
+    .then(() => {
       this.storage.set('hasSeenTutorial', 'true');
     })
   }
