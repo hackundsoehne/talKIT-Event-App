@@ -1,0 +1,61 @@
+<ion-header no-border>
+    <ion-navbar>
+        <ion-buttons end *ngIf="showSkip">
+            <button ion-button (click)="startApp()" color="primary">Skip</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+    <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager>
+
+        <ion-slide>
+            <img src="assets/imgs/Vektor.png" class="slide-image" />
+            <h2 class="slide-title">
+                Willkommen bei <b>talKIT 2018!</b>
+            </h2>
+            <p>
+                Example Text
+            </p>
+        </ion-slide>
+
+        <!-- <ion-slide>
+            <img src="assets/img/ica-slidebox-img-2.png" class="slide-image" />
+            <h2 class="slide-title">What is Ionic?</h2>
+            <p><b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.</p>
+        </ion-slide> -->
+
+        <ion-slide>
+            <img src="assets/imgs/Vektor.png" class="slide-image" />
+            <h2 class="slide-title">Kleiner Text zu ML & Cybersecurity</h2>
+            <p>Blablabla</p>
+        </ion-slide>
+
+        <ion-slide>
+            <ion-content padding>
+                <form #loginForm="ngForm" (ngSubmit)="startApp()" autocomplete="off">
+                    <ion-row>
+                        <ion-col>
+                            <ion-list inset>
+                                <ion-item>
+                                    <ion-input placeholder="Anmelde-Code" name="token" id="loginField" type="text" required [(ngModel)]="token" #email></ion-input>
+                                </ion-item>
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                            <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </form>
+                <div style="margin-top: 10px">
+                    oder klicke auf den Link in der E-Mail
+                </div>
+            </ion-content>
+        </ion-slide>
+
+    </ion-slides>
+</ion-content>

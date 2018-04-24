@@ -7,6 +7,7 @@ import { AlertController } from 'ionic-angular';
 
 
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 import { Schedule } from './schedule';
 
 
@@ -20,7 +21,7 @@ export class MyApp {
 
   constructor() {
     updateSchedule()
-    .then(dk => this.rootPage = TabsControllerPage)
+    .then(dk => this.rootPage = TutorialPage)
     .catch(ex => {
       console.log('parsing failed', ex)
       //TODO error page!
