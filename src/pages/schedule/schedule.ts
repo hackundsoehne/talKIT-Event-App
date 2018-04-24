@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Refresher } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
 import { SessionChooserPage } from '../session-chooser/session-chooser';
 import * as schedule from '../../app/schedule'
-import {SCHEDULE} from '../../app/app.component'
+import {SCHEDULE, SCHEDULE_ALL, updateSchedule} from '../../app/app.component'
 
 class ScheduleGroup {
   public name: String
@@ -44,11 +44,20 @@ class ScheduleItem {
 })
 export class SchedulePage {
   scheduleGroups : Array<ScheduleGroup>;
+  segment = 'personal';
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController) {
     //TODO replace
     this.scheduleGroups = SCHEDULE.days.map(x => new ScheduleGroup(x))
+  }
+
+  updateSchedule() {
+    if (this.segment == "all") {
+      this.scheduleGroups = SCHEDULE_ALL.days.map(x => new ScheduleGroup(x))
+    } else {
+      this.scheduleGroups = SCHEDULE.days.map(x => new ScheduleGroup(x))
+    }
   }
 
   goToDetail(item : ScheduleItem) {
@@ -57,5 +66,16 @@ export class SchedulePage {
     } else {
       this.navCtrl.push(SessionChooserPage, {block : item.backingBlock});
     }
+  }
+  
+  doRefresh(refresher: Refresher) {
+    updateSchedule()
+    .then(() => {
+      updateSchedule()
+      refresher.complete();
+    })
+    .catch(ex => {
+      alert("unable to update schedule" + ex)
+    })
   }
 }

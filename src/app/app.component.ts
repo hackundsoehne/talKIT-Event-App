@@ -19,18 +19,13 @@ export class MyApp {
   rootPage:any;
 
   constructor() {
-    fetch('https://appapi.hackundsoehne.de/schedule')
-      .then(reponse => reponse.json())
-      .then(json => Schedule.fromJSON(json))
-      .then(schedule => {
-        SCHEDULE = schedule
-        this.rootPage = TabsControllerPage;
-      })
-      .catch(ex => {
-        console.log('parsing failed', ex)
-        //TODO error page!
-        alert("critical error, unable to load schedule. Please reload page")
-      })
+    updateSchedule()
+    .then(dk => this.rootPage = TabsControllerPage)
+    .catch(ex => {
+      console.log('parsing failed', ex)
+      //TODO error page!
+      alert("critical error, unable to load schedule. Please reload page")
+    })
   }
 
 
@@ -47,4 +42,20 @@ export class MyApp {
 
 export var SCHEDULE = undefined
 export var SCHEDULE_ALL = undefined
+
+export function updateSchedule() : Promise<any> {
+  return Promise.all([
+    fetch('https://appapi.hackundsoehne.de/schedule')
+    .then(response => response.json()),
+    fetch('https://appapi.hackundsoehne.de/schedule')
+    .then(response => response.json())
+  ])
+    .then(jsons => jsons.map(j => Schedule.fromJSON(j)))
+    .then(schedules => {
+      SCHEDULE = schedules[0]
+      SCHEDULE_ALL = schedules[1]
+      return schedules
+    })
+}
+
 
