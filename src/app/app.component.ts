@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
 // import { SplashScreen } from '@ionic-native/splash-screen';
 
 
-
+import { Storage } from '@ionic/storage';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { Schedule } from './schedule';
@@ -19,9 +19,16 @@ export class MyApp {
   
   rootPage:any;
 
-  constructor() {
+  constructor(public storage: Storage) {
     updateSchedule()
-    .then(dk => this.rootPage = TutorialPage)
+    .then(dk => this.storage.get('hasSeenTutorial').catch(() => "false"))
+    .then(hasSeen => {
+      if (hasSeen == "true") {
+        this.rootPage = TabsControllerPage
+      } else {
+        this.rootPage = TutorialPage
+      }
+    })
     .catch(ex => {
       console.log('parsing failed', ex)
       //TODO error page!
@@ -45,6 +52,15 @@ export var SCHEDULE = undefined
 export var SCHEDULE_ALL = undefined
 
 export function updateSchedule() : Promise<any> {
+  //TODO bypass cache option
+  // var myHeaders = new Headers();
+  // myHeaders.append('pragma', 'no-cache');
+  // myHeaders.append('cache-control', 'no-cache');
+
+  // var myInit = {
+  //   method: 'GET',
+  //   headers: myHeaders,
+  // };
   return Promise.all([
     fetch('https://appapi.hackundsoehne.de/schedule')
     .then(response => response.json()),
