@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { NavController, Refresher } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
 import { SessionChooserPage } from '../session-chooser/session-chooser';
 import * as schedule from '../../app/schedule'
 import {SCHEDULE, SCHEDULE_ALL, updateSchedule} from '../../app/app.component'
+import { Storage } from '@ionic/storage';
 
 class ScheduleGroup {
   public name: String
@@ -23,14 +24,12 @@ class ScheduleItem {
   public backingItem: schedule.BlockItem
   constructor(block : schedule.Block) {
     this.time = block.getTime()
-
+    this.title = block.name
     if (block.items.length == 1) {
       let item = block.items[0]
-      this.title = item.name
       this.backingBlock = block
       this.backingItem = item
     } else {
-      this.title = block.name
       this.backingBlock = block
       this.backingItem = undefined
     }
@@ -43,16 +42,17 @@ class ScheduleItem {
   templateUrl: 'schedule.html'
 })
 export class SchedulePage {
-  scheduleGroups : Array<ScheduleGroup>;
+  //@ViewChild('scheduleGroups') 
+  scheduleGroups : Array<ScheduleGroup>
   segment = 'personal';
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public storage: Storage) {
     //TODO replace
     this.scheduleGroups = SCHEDULE.days.map(x => new ScheduleGroup(x))
   }
 
-  updateSchedule() {
+  updateDisplaySchedule() {
     if (this.segment == "all") {
       this.scheduleGroups = SCHEDULE_ALL.days.map(x => new ScheduleGroup(x))
     } else {
@@ -69,9 +69,9 @@ export class SchedulePage {
   }
   
   doRefresh(refresher: Refresher) {
-    updateSchedule()
+    updateSchedule(this.storage)
     .then(() => {
-      updateSchedule()
+      this.updateDisplaySchedule()
       refresher.complete();
     })
     .catch(ex => {

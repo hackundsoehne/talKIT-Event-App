@@ -56,16 +56,16 @@ export class BlockItem {
         if (json.host) {
             host = Host.fromJSON(json.host)
         }
-        var string = undefined
-        if (json.string) {
-            string = string
+        var image = undefined
+        if (json.image) {
+            image = json.image
         }
         return new BlockItem(
             Location.fromJSON(json.location), 
             json.name, 
             json.description,
             host,
-            string
+            image
         )
     }
 }

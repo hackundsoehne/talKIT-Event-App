@@ -8,6 +8,7 @@ import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { LoginPage } from '../pages/login/login';
 import { Schedule } from './schedule';
 
 
@@ -19,21 +20,52 @@ export class MyApp {
   
   rootPage:any;
 
-  constructor(public storage: Storage) {
-    updateSchedule()
-    .then(dk => this.storage.get('hasSeenTutorial').catch(() => "false"))
-    .then(hasSeen => {
-      if (hasSeen == "true") {
+  constructor(public storage: Storage, private alertCtrl: AlertController) {
+    this.setup()
+    .catch(ex => {
+      console.log('something failed', ex)
+
+      console.log('something failed ' + ex.message == PERS_ERROR)
+      if (ex.message == PERS_ERROR) {
+        return this.showError("critical error, unable to load schedule. Loggig you out and trying to load general schedule.\n" +  ex)
+        .then(() => storage.remove("user"))
+        .then(() => this.setup())
+      } else {
+        //TODO error page!
+        return this.showError("critical error, unable to load schedule. Please reload page.\n" +  ex)
+      }
+    })
+  }
+
+  setup() : Promise<any> {
+    return updateSchedule(this.storage)
+    .then(dk => Promise.all([
+      this.storage.get('hasSeenTutorial').catch(() => "false"),
+      this.storage.get('user').catch(() => "")
+    ]))
+    .then(comb => {
+      const hasSeen = comb[0]
+      const user = comb[1]
+      if (hasSeen == "true" && user) {
+        this.rootPage = TabsControllerPage
+      } else if (hasSeen == "true") {
+        // this.rootPage = LoginPage
         this.rootPage = TabsControllerPage
       } else {
         this.rootPage = TutorialPage
       }
+      // this.rootPage = TutorialPage
     })
-    .catch(ex => {
-      console.log('parsing failed', ex)
-      //TODO error page!
-      alert("critical error, unable to load schedule. Please reload page")
-    })
+  }
+
+  showError(text) : Promise<any> {
+ 
+    let alert = this.alertCtrl.create({
+      title: 'Fehler',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    return alert.present();
   }
 
 
@@ -51,7 +83,12 @@ export class MyApp {
 export var SCHEDULE = undefined
 export var SCHEDULE_ALL = undefined
 
-export function updateSchedule() : Promise<any> {
+export function logout(storage: Storage) : Promise<any> {
+  return storage.remove("user")
+  .then(() =>  SCHEDULE = SCHEDULE_ALL)
+}
+
+export function updateSchedule(storage: Storage) : Promise<any> {
   //TODO bypass cache option
   // var myHeaders = new Headers();
   // myHeaders.append('pragma', 'no-cache');
@@ -62,8 +99,21 @@ export function updateSchedule() : Promise<any> {
   //   headers: myHeaders,
   // };
   return Promise.all([
-    fetch('https://appapi.hackundsoehne.de/schedule')
-    .then(response => response.json()),
+    storage.get('user')
+    .catch(x => "").
+    then(id => {
+      if (id && id != "") {
+        return personal(id)
+      } else {
+        return fetch('https://appapi.hackundsoehne.de/schedule')
+      }
+    })
+      // .catch(x => {
+      //   alert("critical error, unable to load schedule. Loggig you out.\n" + x)
+      //   return fetch('https://appapi.hackundsoehne.de/schedule')
+      // })
+    .then(response => response.json())
+    ,
     fetch('https://appapi.hackundsoehne.de/schedule')
     .then(response => response.json())
   ])
@@ -73,6 +123,20 @@ export function updateSchedule() : Promise<any> {
       SCHEDULE_ALL = schedules[1]
       return schedules
     })
+}
+
+export const PERS_ERROR : string = "unable to retrieve personal schedule."
+
+function personal(user: String) : Promise<Response> {
+  return fetch('https://appapi.hackundsoehne.de/schedule/' + user)
+  .then(resp => {
+    if (resp.status != 200) {
+      var error = new Error(PERS_ERROR)
+      throw error
+    } else {
+      return resp
+    }
+  })
 }
 
 

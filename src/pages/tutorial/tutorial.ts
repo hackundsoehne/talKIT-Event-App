@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { MenuController, NavController, Slides } from 'ionic-angular';
+import { MenuController, NavController, Slides, LoadingController, Loading, AlertController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
@@ -14,25 +14,44 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 export class TutorialPage {
   @ViewChild('token') token : String  = ""
   showSkip = true;
+  loading: Loading;
 
   @ViewChild('slides') slides: Slides;
 
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
-    public storage: Storage
+    public storage: Storage,
+    private alertCtrl: AlertController, 
+    private loadingCtrl: LoadingController
   ) { }
 
   startApp() {
-    // fetch("https://appapi.hackundsoehne.de/user/" + this.token)
-    // .then(response => response.json())
-    // .then(json => {
-    //   this.storage.set('user', this.token);  
-    // })
-    // .then(() => this.navCtrl.push(TabsControllerPage))
     this.navCtrl.push(TabsControllerPage)
-    .then(() => {
-      this.storage.set('hasSeenTutorial', 'true');
+      .then(() => {
+        this.storage.set('hasSeenTutorial', 'true')
+      })
+  }
+
+  login() {
+    this.showLoading()
+    fetch("https://appapi.hackundsoehne.de/schedule/" + this.token)
+    .then(resp => {
+      if (resp.status == 200) {
+        return this.navCtrl.push(TabsControllerPage)
+        .then(x => {
+          this.storage.set('hasSeenTutorial', 'true')
+        })
+        .then(() => {
+          this.storage.set('user', this.token)
+        })
+      } else {
+        var error = new Error(resp.statusText)
+        return Promise.reject(error)
+      }
+    })
+    .catch(x => {
+      this.showError("Token nicht gefunden")
     })
   }
 
@@ -44,6 +63,14 @@ export class TutorialPage {
     this.slides.update();
   }
 
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
@@ -52,6 +79,17 @@ export class TutorialPage {
   ionViewDidLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+ 
+    let alert = this.alertCtrl.create({
+      title: 'Fehler',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

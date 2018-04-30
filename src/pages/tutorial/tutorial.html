@@ -39,7 +39,7 @@
 
         <ion-slide>
             <img src="assets/imgs/Vektor.png" class="slide-image" />
-            <form #loginForm="ngForm" (ngSubmit)="startApp()" autocomplete="off">
+            <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
                 <ion-row>
                     <ion-col>
                         <ion-list inset>
@@ -57,9 +57,9 @@
                     </ion-col>
                 </ion-row>
             </form>
-            <div style="margin-top: 10px">
+            <!-- <div style="margin-top: 10px">
                 oder klicke auf den Link in der E-Mail
-            </div>
+            </div> -->
         </ion-slide>
 
     </ion-slides>

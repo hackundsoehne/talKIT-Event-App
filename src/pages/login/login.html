@@ -1,34 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Login
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content padding id="page11">
-  <h1 id="login-heading7" style="color:#000000;text-align:center;">
-    talKIT 2018
-  </h1>
-  <div id="login-markdown17" style="text-align:center;" class="show-list-numbers-and-dots">
-    <p style="color:#000000;">
-      blablabla
-    </p>
-  </div>
-  <div class="spacer" style="height:100px;" id="login-spacer2"></div>
-  <form id="login-form1">
-    <ion-list id="login-list2">
-      <ion-item id="login-input1">
-        <ion-label>
-          Anmelde-Code
-        </ion-label>
-        <ion-input type="email" placeholder=""></ion-input>
-      </ion-item>
-    </ion-list>
-    <button id="login-button5" ion-button color="stable" block>
-      Log in
-    </button>
-    <button id="login-button6" ion-button clear color="positive" block href-inappbrowser="/signup">
-      oder klicke auf den Link in der E-Mail
-    </button>
-  </form>
+    <img src="assets/imgs/Vektor.png" class="slide-image" />
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Anmelde-Code" name="token" id="loginField" type="text" required [(ngModel)]="token" #email></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
+                        </button>
+            </ion-col>
+        </ion-row>
+    </form>
 </ion-content>
