@@ -15,7 +15,7 @@ export class NowPage {
   public title: String
   @ViewChild('countdown') public countdown: String = "xx:xx"
   private timer;
-  private runTimer : boolean =  true;
+  private runTimer : boolean =  false;
   private hasFinished = false
   private secondsRemaining = 0;
   // this tells the tabs component which Pages
@@ -60,6 +60,7 @@ export class NowPage {
   }
 
   ionViewDidEnter() {
+    this.setUpNextBlock()
     this.startTimer()
   }
 
