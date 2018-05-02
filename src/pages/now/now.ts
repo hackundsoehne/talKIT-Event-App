@@ -52,9 +52,19 @@ export class NowPage {
   }
 
   startTimer() {
-      this.runTimer = true;
-      this.hasFinished = false
-      this.timerTick();
+      if (!this.runTimer) {
+        this.runTimer = true;
+        this.hasFinished = false
+        this.timerTick();
+      }
+  }
+
+  ionViewDidEnter() {
+    this.startTimer()
+  }
+
+  ionViewDidLeave() {
+    this.runTimer = false;
   }
 
   timerTick() {
