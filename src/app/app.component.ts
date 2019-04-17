@@ -105,16 +105,16 @@ export function updateSchedule(storage: Storage) : Promise<any> {
       if (id && id != "") {
         return personal(id)
       } else {
-        return fetch('https://appapi.hackundsoehne.de/schedule')
+        return fetch('https://appapi.talkit.eu/schedule')
       }
     })
       // .catch(x => {
       //   alert("critical error, unable to load schedule. Loggig you out.\n" + x)
-      //   return fetch('https://appapi.hackundsoehne.de/schedule')
+      //   return fetch('https://appapi.talkit.eu/schedule')
       // })
     .then(response => response.json())
     ,
-    fetch('https://appapi.hackundsoehne.de/schedule')
+    fetch('https://appapi.talkit.eu/schedule')
     .then(response => response.json())
   ])
     .then(jsons => jsons.map(j => Schedule.fromJSON(j)))
@@ -128,7 +128,7 @@ export function updateSchedule(storage: Storage) : Promise<any> {
 export const PERS_ERROR : string = "unable to retrieve personal schedule."
 
 function personal(user: String) : Promise<Response> {
-  return fetch('https://appapi.hackundsoehne.de/schedule/' + user)
+  return fetch('https://appapi.talkit.eu/schedule/' + user)
   .then(resp => {
     if (resp.status != 200) {
       var error = new Error(PERS_ERROR)
