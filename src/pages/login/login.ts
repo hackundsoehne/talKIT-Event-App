@@ -22,7 +22,7 @@ export class LoginPage {
 
   login() {
     this.showLoading()
-    fetch("https://appapi.talkit.eu/schedule/" + this.token)
+    fetch("https://appapi.hackundsoehne.de/schedule/" + this.token)
     .then(resp => {
       if (resp.status == 200) {
         return this.navCtrl.push(TabsControllerPage)
